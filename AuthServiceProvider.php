@@ -2,7 +2,11 @@
 
 namespace NineCells\Auth;
 
+use App;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Socialite\SocialiteServiceProvider;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Foundation\AliasLoader;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,5 +25,7 @@ class AuthServiceProvider extends ServiceProvider
 
     public function register()
     {
+        App::register(SocialiteServiceProvider::class);
+        AliasLoader::getInstance()->alias('Socialite', Socialite::class);
     }
 }
