@@ -1,0 +1,14 @@
+{
+  "name": "ninecells/auth",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.5.9",
+    "laravel/socialite": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "NineCells\\Auth\\": ""
+    }
+  },
+  "minimum-stability": "dev"
+}
