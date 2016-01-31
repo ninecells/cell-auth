@@ -1,5 +1,5 @@
 {
-  "name": "ninecells/auth",
+  "name": "ninecells/cell-auth",
   "license": "MIT",
   "require": {
     "php": ">=5.5.9",
