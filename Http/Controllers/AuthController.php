@@ -3,12 +3,13 @@
 namespace NineCells\Auth\Http\Controllers;
 
 use App\User;
+use Auth;
 use Validator;
+use Socialite;
+use NineCells\Auth\Models\SocialLogin;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Socialite;
-use Auth;
 
 class AuthController extends Controller
 {
@@ -54,12 +55,12 @@ class AuthController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $user = Socialite::driver('github')->user();
+            $guest = Socialite::driver('github')->user();
         } catch (Exception $e) {
             return redirect('auth/login');
         }
 
-        $authUser = $this->findOrCreateUser($user);
+        $authUser = $this->findOrCreateUser($guest);
 
         Auth::login($authUser, true);
 
@@ -72,19 +73,37 @@ class AuthController extends Controller
      * @param $githubUser
      * @return User
      */
-    private function findOrCreateUser($githubUser)
+    private function findOrCreateUser($guest)
     {
-        $authUser = User::where('github_id', $githubUser->id)->first();
+        $ST_GITHUB = 'github';
 
-        if ($authUser) {
-            return $authUser;
+        $social = SocialLogin::where([
+            'social_id' => $guest->id,
+            'social_type' => $ST_GITHUB,
+        ])->first();
+
+        if ($social) {
+            $authUser = $social->user;
+            if ($authUser) {
+                return $authUser;
+            }
         }
 
-        return User::create([
-            'name' => $githubUser->name,
-            'email' => $githubUser->email,
-            'github_id' => $githubUser->id,
-            'avatar' => $githubUser->avatar,
+        $user = User::where('email', $guest->email)->first();
+        if ( !$user ) {
+            $user = User::create([
+                'name' => $guest->name,
+                'email' => $guest->email,
+            ]);
+        }
+
+        SocialLogin::create([
+            'user_id' => $user->id,
+            'social_id' => $guest->id,
+            'social_type' => $ST_GITHUB,
+            'avatar' => $guest->avatar,
         ]);
+
+        return $user;
     }
 }
