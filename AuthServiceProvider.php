@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Socialite\SocialiteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\AliasLoader;
+use NineCells\Assets\Twbs3\Twbs3JumboNarrowServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         App::register(SocialiteServiceProvider::class);
         AliasLoader::getInstance()->alias('Socialite', Socialite::class);
+
+        App::register(Twbs3JumboNarrowServiceProvider::class);
     }
 }
