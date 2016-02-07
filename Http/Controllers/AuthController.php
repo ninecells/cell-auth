@@ -94,8 +94,8 @@ class AuthController extends Controller
         $user = User::where('email', $guest->email)->first();
         if ( !$user ) {
             $user = User::create([
-                'name' => $guest->nickname,
-                'email' => $guest->email,
+                'name' => $guest->user['login'],
+                'email' => $guest->user['email'],
             ]);
         }
 
