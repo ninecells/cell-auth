@@ -44,7 +44,9 @@ class AuthController extends Controller
      */
     public function redirectToProvider()
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver('github')
+            ->scopes(['user:email'])
+            ->redirect();
     }
 
     /**
@@ -92,7 +94,7 @@ class AuthController extends Controller
         $user = User::where('email', $guest->email)->first();
         if ( !$user ) {
             $user = User::create([
-                'name' => $guest->name,
+                'name' => $guest->nickname,
                 'email' => $guest->email,
             ]);
         }
