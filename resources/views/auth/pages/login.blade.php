@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        @if($login_status === 'status_success')
+        @if($login_status === 'login_status_success')
         <div class="alert alert-success" role="alert">로그인에 성공했습니다.</div>
         @elseif($login_status === 'login_status_fail_email')
         <div class="alert alert-danger" role="alert">로그인에 실패했습니다. (알 수 없는 이메일 주소)</div>
