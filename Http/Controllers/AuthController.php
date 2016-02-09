@@ -63,12 +63,17 @@ class AuthController extends Controller
         $guest = null;
         try {
             $guest = Socialite::driver('github')->user();
-            if (!$guest || !isset($guest->user) || !isset($guest->user['login']) || !isset($guest->user['email'])) {
-                throw new Exception('Login Error');
+
+            if (!$guest || !isset($guest->user)) {
+                throw new Exception('login_status_fail');
+            } else if (!isset($guest->user['email'])) {
+                throw new Exception('login_status_fail_email');
+            } else if (!isset($guest->user['login'])) {
+                throw new Exception('login_status_fail_login');
             }
         } catch (Exception $e) {
-            $request->session()->flash('login_status', 'status_fail');
-            Log::error($e->getMessage().' '.print_r(get_object_vars($guest), true));
+            $request->session()->flash('login_status', $e->getMessage());
+            Log::error($e->getMessage() . ' ' . print_r(get_object_vars($guest), true));
             return redirect('auth/login');
         }
 
@@ -118,7 +123,7 @@ class AuthController extends Controller
         ]);
 
         success:
-        $request->session()->flash('login_status', 'status_success');
+        $request->session()->flash('login_status', 'login_status_success');
 
         return $user;
     }

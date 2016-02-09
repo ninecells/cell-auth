@@ -5,8 +5,12 @@
     <div class="col-lg-12">
         @if($login_status === 'status_success')
         <div class="alert alert-success" role="alert">로그인에 성공했습니다.</div>
-        @elseif($login_status === 'status_fail')
-        <div class="alert alert-danger" role="alert">로그인에 실패했습니다.</div>
+        @elseif($login_status === 'login_status_fail_email')
+        <div class="alert alert-danger" role="alert">로그인에 실패했습니다. (알 수 없는 이메일 주소)</div>
+        @elseif($login_status === 'login_status_fail_login')
+        <div class="alert alert-danger" role="alert">로그인에 실패했습니다. (알 수 없는 이름)</div>
+        @elseif($login_status === 'login_status_fail')
+        <div class="alert alert-danger" role="alert">로그인에 실패했습니다. (필수 정보 누락)</div>
         @endif
         @unless(Auth::check())
         <a id="btn-login" class="btn btn-default" href="/auth/github">Github 로그인</a>
