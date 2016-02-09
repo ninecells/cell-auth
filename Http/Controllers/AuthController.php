@@ -2,10 +2,13 @@
 
 namespace NineCells\Auth\Http\Controllers;
 
-use App\User;
+use Log;
 use Auth;
+use App\User;
 use Validator;
 use Socialite;
+use Exception;
+use Illuminate\Http\Request;
 use NineCells\Auth\Models\SocialLogin;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -28,7 +31,8 @@ class AuthController extends Controller
 
     public function login()
     {
-        return view('ncells::auth.pages.login');
+        $login_status = session('login_status');
+        return view('ncells::auth.pages.login', ['login_status' => $login_status]);
     }
 
     public function logout()
@@ -54,15 +58,21 @@ class AuthController extends Controller
      *
      * @return Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(Request $request)
     {
+        $guest = null;
         try {
             $guest = Socialite::driver('github')->user();
+            if (!$guest || !isset($guest->user) || !isset($guest->user['login']) || !isset($guest->user['email'])) {
+                throw new Exception('Login Error');
+            }
         } catch (Exception $e) {
+            $request->session()->flash('login_status', 'status_fail');
+            Log::error($e->getMessage().' '.print_r(get_object_vars($guest), true));
             return redirect('auth/login');
         }
 
-        $authUser = $this->findOrCreateUser($guest);
+        $authUser = $this->findOrCreateUser($request, $guest);
 
         Auth::login($authUser, true);
 
@@ -75,9 +85,10 @@ class AuthController extends Controller
      * @param $githubUser
      * @return User
      */
-    private function findOrCreateUser($guest)
+    private function findOrCreateUser(Request $request, $guest)
     {
         $ST_GITHUB = 'github';
+        $user = null;
 
         $social = SocialLogin::where([
             'social_id' => $guest->id,
@@ -85,14 +96,14 @@ class AuthController extends Controller
         ])->first();
 
         if ($social) {
-            $authUser = $social->user;
-            if ($authUser) {
-                return $authUser;
+            $user = $social->user;
+            if ($user) {
+                goto success;
             }
         }
 
         $user = User::where('email', $guest->email)->first();
-        if ( !$user ) {
+        if (!$user) {
             $user = User::create([
                 'name' => $guest->user['login'],
                 'email' => $guest->user['email'],
@@ -105,6 +116,9 @@ class AuthController extends Controller
             'social_type' => $ST_GITHUB,
             'avatar' => $guest->avatar,
         ]);
+
+        success:
+        $request->session()->flash('login_status', 'status_success');
 
         return $user;
     }
