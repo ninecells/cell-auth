@@ -31,8 +31,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        $login_status = session('login_status');
-        return view('ncells::auth.pages.login', ['login_status' => $login_status]);
+        return view('ncells::auth.pages.login');
     }
 
     public function logout()
@@ -81,7 +80,7 @@ class AuthController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect('auth/login');
+        return redirect("members/{$authUser->id}");
     }
 
     /**

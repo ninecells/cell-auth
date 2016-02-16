@@ -8,5 +8,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('auth/github/callback', 'AuthController@handleProviderCallback');
         Route::get('auth/login', 'AuthController@login');
         Route::post('auth/logout', 'AuthController@logout');
+
+        Route::get('members/{member_id}', 'MemberController@GET_member');
     });
 });
