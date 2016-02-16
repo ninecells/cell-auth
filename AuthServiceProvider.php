@@ -11,7 +11,7 @@ use NineCells\Assets\Twbs3\Twbs3JumboNarrowServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(MemberTab $tab)
     {
         if (! $this->app->routesAreCached()) {
             require __DIR__ . '/Http/routes.php';
@@ -22,6 +22,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/database/migrations/' => database_path('migrations')
         ], 'migrations');
+
+        $tab->addMemberTabItemInfo('profile', 'Profile', function($member_id) {
+            return route('ncells::url.auth.member_profile', $member_id);
+        });
     }
 
     public function register()
@@ -30,5 +34,9 @@ class AuthServiceProvider extends ServiceProvider
         AliasLoader::getInstance()->alias('Socialite', Socialite::class);
 
         App::register(Twbs3JumboNarrowServiceProvider::class);
+
+        $this->app->singleton(MemberTab::class, function ($app) {
+            return new MemberTab();
+        });
     }
 }
