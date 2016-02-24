@@ -8,10 +8,11 @@ use Laravel\Socialite\SocialiteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\AliasLoader;
 use NineCells\Assets\Twbs3\Twbs3JumboNarrowServiceProvider;
+use NineCells\Admin\PackageList;
 
 class AuthServiceProvider extends ServiceProvider
 {
-    public function boot(MemberTab $tab)
+    public function boot(MemberTab $tab, PackageList $packages)
     {
         if (! $this->app->routesAreCached()) {
             require __DIR__ . '/Http/routes.php';
@@ -25,6 +26,10 @@ class AuthServiceProvider extends ServiceProvider
 
         $tab->addMemberTabItemInfo('profile', 'Profile', function($member_id) {
             return route('ncells::url.auth.member_profile', $member_id);
+        });
+
+        $packages->addPackageInfo('member', 'Member', function() {
+            return 'AuthServiceProvider.php를 수정하세요';
         });
     }
 
