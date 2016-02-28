@@ -1,8 +1,6 @@
-@extends('app')
+@extends('ncells::jumbotron.app')
 
 @section('content')
-<div class="alert alert-info" role="alert">신규 스킨 적용 예정</div>
-
 <div class="row">
     <div class="col-lg-12">
         <p>
