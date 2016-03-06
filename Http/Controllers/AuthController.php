@@ -4,6 +4,7 @@ namespace NineCells\Auth\Http\Controllers;
 
 use Log;
 use Auth;
+use Response;
 use App\User;
 use Validator;
 use Socialite;
@@ -37,7 +38,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('auth/login');
+        return Response::json(['redirect' => '/auth/login']);
     }
 
     /**

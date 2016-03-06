@@ -16,16 +16,32 @@ $member = \App\User::find($member_id);
                     </p>
                     @if ( Auth::check() && Auth::user()->id == $member_id )
                     <br/><br/><br/><br/>
-                    <p>
-                    <form method="post" action="/auth/logout">
-                        {{ csrf_field() }}
-                        <button id="btn-logout" class="btn btn-danger">로그아웃</button>
-                    </form>
-                    </p>
+                    <a href="#" data-href="/auth/logout" class="logout btn btn-danger">로그아웃</a>
                     @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $(function () {
+        $('.btn.logout').click(function () {
+            var href = $(this).data('href');
+
+            $.ajax({
+                url: href,
+                type: "POST",
+                success: function (data, textStatus, jqXHR) {
+                    window.location.href = data.redirect;
+                },
+                error: function (jqXHR, textStatus, errorThrown) {}
+            });
+
+            return false;
+        });
+    });
+</script>
 @endsection
