@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
             return route('ncells::url.auth.member_profile', $member_id);
         });
 
-        $packages->addPackageInfo('member', 'Member', function() {
+        $packages->addPackageInfo('member', 'Members', function() {
             return 'AuthServiceProvider.php를 수정하세요';
         });
     }
