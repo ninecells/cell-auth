@@ -12,7 +12,7 @@ class CreateSocialLoginsTable extends Migration
      */
     public function up()
     {
-        Schema::create('social_logins', function (Blueprint $table) {
+        Schema::create('users_social_logins', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger("user_id")->index();
             $table->unsignedInteger("social_id");
@@ -30,6 +30,6 @@ class CreateSocialLoginsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('social_logins');
+        Schema::drop('users_social_logins');
     }
 }

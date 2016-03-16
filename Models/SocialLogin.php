@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SocialLogin extends Model
 {
+    protected $table = 'users_social_logins';
+
     protected $fillable = [
         'user_id', 'social_id', 'social_type', 'avatar',
     ];
