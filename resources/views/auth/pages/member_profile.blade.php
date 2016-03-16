@@ -7,7 +7,7 @@ $member = \App\User::find($member_id);
 <div class="row">
     <div class="col-lg-12">
         <div>
-            @include('ncells::auth.parts.member_tab', ['member_id' => $member->id, 'tabitem_key' => 'profile'])
+            @include('ncells::auth.parts.member_tab', ['member_id' => $member_id, 'tabitem_key' => 'profile'])
             <div class="tab-content">
                 <br/>
                 <div role="tabpanel" class="tab-pane active">
