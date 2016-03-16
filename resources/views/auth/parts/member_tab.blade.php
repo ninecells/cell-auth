@@ -1,4 +1,4 @@
-@inject('tab', 'NineCells\Auth\MemberTab')
+@inject('tab', 'NineCells\Member\MemberTab')
 <?php
 $tab_items = $tab->getTabItems();
 ?>
