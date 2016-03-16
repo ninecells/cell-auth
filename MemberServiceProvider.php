@@ -1,6 +1,6 @@
 <?php
 
-namespace NineCells\Auth;
+namespace NineCells\Member;
 
 use App;
 use Illuminate\Support\ServiceProvider;
@@ -10,7 +10,7 @@ use Illuminate\Foundation\AliasLoader;
 use NineCells\Assets\Twbs3\Twbs3JumboNarrowServiceProvider;
 use NineCells\Admin\PackageList;
 
-class AuthServiceProvider extends ServiceProvider
+class MemberServiceProvider extends ServiceProvider
 {
     public function boot(MemberTab $tab, PackageList $packages)
     {

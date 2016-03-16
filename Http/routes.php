@@ -2,7 +2,7 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::group(['namespace' => 'NineCells\Auth\Http\Controllers'], function() {
+    Route::group(['namespace' => 'NineCells\Member\Http\Controllers'], function() {
 
         Route::get('auth/github', 'AuthController@redirectToProvider');
         Route::get('auth/github/callback', 'AuthController@handleProviderCallback');

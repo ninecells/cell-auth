@@ -1,5 +1,5 @@
 {
-  "name": "ninecells/cell-auth",
+  "name": "ninecells/cell-member",
   "license": "MIT",
   "require": {
     "php": ">=5.5.9",
@@ -8,7 +8,7 @@
   },
   "autoload": {
     "psr-4": {
-      "NineCells\\Auth\\": ""
+      "NineCells\\Member\\": ""
     }
   },
   "minimum-stability": "dev"

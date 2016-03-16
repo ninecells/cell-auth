@@ -1,6 +1,6 @@
 <?php
 
-namespace NineCells\Auth\Http\Controllers;
+namespace NineCells\Member\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 

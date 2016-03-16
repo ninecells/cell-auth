@@ -1,6 +1,6 @@
 <?php
 
-namespace NineCells\Auth\Http\Controllers;
+namespace NineCells\Member\Http\Controllers;
 
 use Log;
 use Auth;
@@ -10,7 +10,7 @@ use Validator;
 use Socialite;
 use Exception;
 use Illuminate\Http\Request;
-use NineCells\Auth\Models\SocialLogin;
+use NineCells\Member\Models\SocialLogin;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;

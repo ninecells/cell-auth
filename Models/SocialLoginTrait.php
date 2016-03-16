@@ -1,6 +1,6 @@
 <?php
 
-namespace NineCells\Auth\Models;
+namespace NineCells\Member\Models;
 
 trait SocialLoginTrait
 {

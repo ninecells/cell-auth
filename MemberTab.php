@@ -1,6 +1,6 @@
 <?php
 
-namespace NineCells\Auth;
+namespace NineCells\Member;
 
 class MemberTab
 {
