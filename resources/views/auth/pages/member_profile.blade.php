@@ -12,8 +12,6 @@ $member = \App\User::find($member_id);
                 <br/>
                 <div role="tabpanel" class="tab-pane active">
                     <p>이름: {{ $member->name }}</p>
-                    <p>Github: <a href="http://github.com/{{ $member->name }}">http://github.com/{{ $member->name }}</a>
-                    </p>
                     @if ( Auth::check() && Auth::user()->id == $member_id )
                     <br/><br/><br/><br/>
                     <a href="#" data-href="/auth/logout" class="logout btn btn-danger">로그아웃</a>

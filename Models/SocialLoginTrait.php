@@ -6,6 +6,10 @@ trait SocialLoginTrait
 {
     public function getAvatarAttribute()
     {
+        if ($this->socials->count() == 0) {
+            return '';
+        }
+
         return $this->socials->last()->avatar;
     }
 
