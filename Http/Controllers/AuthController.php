@@ -50,12 +50,12 @@ class AuthController extends Controller
 
     public function getRegister()
     {
-        return view('ncells::auth.pages.register');
+        return view('ncells::member.pages.register');
     }
 
     public function getLogin()
     {
-        return view('ncells::auth.pages.login');
+        return view('ncells::member.pages.login');
     }
 
     public function logout()
