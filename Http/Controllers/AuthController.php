@@ -30,6 +30,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    protected $redirectPath = '/';
+
     protected function validator(array $data)
     {
         return Validator::make($data, [

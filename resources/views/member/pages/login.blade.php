@@ -45,6 +45,7 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                             <input class="btn btn-primary" type="submit" value="Login">
+                            &nbsp;&nbsp;&nbsp;<a href="/auth/register">Register</a>
                         </div>
                     </div>
                 </form>
