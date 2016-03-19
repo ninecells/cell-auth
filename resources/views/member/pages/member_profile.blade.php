@@ -24,6 +24,7 @@ $member = \App\User::find($member_id);
 @endsection
 
 @section('script')
+@parent
 <script>
     $(function () {
         $('.btn.logout').click(function () {

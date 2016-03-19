@@ -76,6 +76,7 @@
 @endsection
 
 @section('script')
+@parent
 <script>
     $(function () {
         $('#btn-login').click(function (e) {
