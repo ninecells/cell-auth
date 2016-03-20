@@ -2,17 +2,16 @@
 
 namespace NineCells\Member\Http\Controllers;
 
-use Log;
-use Auth;
-use Response;
 use App\User;
-use Validator;
-use Socialite;
-use Exception;
-use Illuminate\Http\Request;
-use NineCells\Member\Models\SocialLogin;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use Log;
+use NineCells\Member\Models\SocialLogin;
+use Response;
+use Socialite;
+use Validator;
 
 class AuthController extends Controller
 {
