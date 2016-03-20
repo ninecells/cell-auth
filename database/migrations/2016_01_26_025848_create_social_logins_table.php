@@ -15,7 +15,7 @@ class CreateSocialLoginsTable extends Migration
         Schema::create('users_social_logins', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger("user_id")->index();
-            $table->unsignedInteger("social_id");
+            $table->string("social_id");
             $table->string("social_type");
             $table->string('avatar', 300);
             $table->timestamps();

@@ -56,6 +56,7 @@ class AuthController extends Controller
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)
+            ->scopes(['users:read'])
             ->redirect();
     }
 
@@ -82,7 +83,7 @@ class AuthController extends Controller
             return $social->user;
         }
 
-        $name = $guest->name;
+        $name = $guest->name ?: $guest->nickname;
         $email = $guest->email ?: "{$guest->id}@{$provider}.com";
 
         $user = User::where('email', $email)->first();
