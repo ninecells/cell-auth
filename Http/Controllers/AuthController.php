@@ -11,7 +11,6 @@ use Socialite;
 use Exception;
 use Illuminate\Http\Request;
 use NineCells\Member\Models\SocialLogin;
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -30,7 +29,7 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectPath = '/';
+    protected $redirectTo = '/';
 
     protected function validator(array $data)
     {
