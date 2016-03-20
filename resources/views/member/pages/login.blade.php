@@ -16,7 +16,8 @@
                 @endif
 
                 <p><span style="color: red;">탈퇴 기능이 아직 제공되지 않으므로 신중히 가입해주십쇼.</span></p>
-                <a id="btn-login" class="btn btn-default" href="/auth/github">Github 로그인</a>
+                <a class="btn-login btn btn-default" href="/auth/github">Github 로그인</a>
+                <a class="btn-login btn btn-default" href="/auth/slack">Slack 로그인</a>
                 <hr/>
 
                 <form method="POST" action="/auth/login" accept-charset="UTF-8" class="form-horizontal">
@@ -65,12 +66,12 @@
 @parent
 <script>
     $(function () {
-        $('#btn-login').click(function (e) {
-            if ($(this).attr('disabled')) {
+        $('.btn-login').click(function (e) {
+            if ($('.btn-login').attr('disabled')) {
                 return false;
             }
-            $(this).text('Github 로그인 중...');
-            $(this).attr('disabled', true);
+            $(this).text('로그인 중...');
+            $('.btn-login').attr('disabled', true);
             return true;
         });
     });
