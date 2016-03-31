@@ -2,8 +2,6 @@
 
 namespace NineCells\Member\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-
 class MemberController extends Controller
 {
     public function GET_member($member_id)
