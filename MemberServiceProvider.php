@@ -29,7 +29,7 @@ class MemberServiceProvider extends ServiceProvider
         });
 
         $packages->addPackageInfo('member', 'Members', function() {
-            return 'AuthServiceProvider.php를 수정하세요';
+            return '/admin/members';
         });
     }
 
