@@ -14,6 +14,7 @@
                     <tr>
                         <th class="rev">#</th>
                         <th class="writer">이름</th>
+                        <th class="email">이메일</th>
                         <th class="created">가입</th>
                     </tr>
                     </thead>
@@ -22,6 +23,7 @@
                     <tr>
                         <td class="rev">{{ $user->id }}</td>
                         <td class="writer"><a href="/members/{{ $user->id }}">{{ $user->name }}</a></td>
+                        <td class="writer">{{ $user->email }}</td>
                         <td class="created">{{ $user->created_at->diffForHumans() }}</td>
                     </tr>
                     @endforeach
@@ -41,7 +43,7 @@
         width: 100%;
     }
 
-    table .rev, .writer, .created {
+    table .rev, .writer, .email, .created {
         width: auto;
         white-space: nowrap;
     }
